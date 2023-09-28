@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layoutPadrao}"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.w3.org/1999/xhtml ">
+<head>
+    <title>cadastro</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <style>
+        /* Estilos para centralizar o card */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("https://ae01.alicdn.com/kf/H712abd99371b456797df437e204971bdE/Comida-fotografia-fundo-grunge-parede-legumes-cozinha-adere-os-de-carne-comida-backdrops-decora-o-placa.jpg");
+        }
+        .card {
+            width: 900px; /* Largura desejada do card */
+            padding: 20px; /* Espaçamento interno do card */
+            border: 1px solid #000000; /* Estilos de borda do card */
+            background-color: #ffffff; /* Cor de fundo do card */
+        }
+        h3 {
+            text-align: center; /* Alinhamento horizontal do título */
+            align-content: center;
+            margin-bottom: 20px; /* Espaçamento inferior do título */
+        }
+    </style>
+
+</head>
+<body>
+<section layout:fragment="conteudo">
+    <form action="/editar" method="POST">
+
+        <div class="col-sm-7 justify-content-center">
+            <div class="col-rm-6" style="width: 900px">
+                <div class="alert alert-success alert-dismisible" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
+                    <button type="button" class="close" data-dimiss="alert"></button>
+                    <span th:text="${mensagem}"> </span>
+                </div>
+            </div>
+
+            <input type="hidden" th:field="*{receita.id}" /> <!-- Campo oculto para o ID -->
+
+            <div class="card ">
+                <h3 class="card-header">Editar Receita</h3>
+                <form th:action="@{/salvar}" method="post">
+                <div class="card-body">
+                    <div class="row mb-3 justify-content-center">
+                        <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="nome" name="nome" th:field="*{receita.nome}">
+                        </div>
+                    </div>
+                    <div class="row mb-3 justify-content-center">
+                        <label for="ingredientes" class="col-sm-2 col-form-label">Ingredientes</label>
+                        <div class="col-sm-7">
+                            <textarea type="text" class="form-control" id="ingredientes" name="ingredientes" th:field="*{receita.ingredientes}" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3 justify-content-center">
+                        <label for="modoDeFazer" class="col-sm-2 col-form-label">Modo de Fazer</label>
+                        <div class="col-sm-7">
+                            <textarea type="text" class="form-control" id="modoDeFazer" name="modoDeFazer" th:field="*{receita.modoDeFazer}" rows="5"></textarea>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-3 justify-content-center">
+                        <div class="col-sm-2 offset-sm-2">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </form>
+</section>
+</body>
+</html>

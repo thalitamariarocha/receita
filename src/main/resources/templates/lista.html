@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Receitas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Lista de Receitas</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>  </th>
+            <th>  </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="receita : ${receitas}">
+            <td th:text="${receita.id}"></td>
+            <td th:text="${receita.nome}"></td>
+        <td>
+            <a th:href="@{/editar/editar/{id}(id=${receita.id})}" class="btn btn-primary justify-content-center">Editar</a>
+            <form th:action="@{/excluir/{id}(id=${receita.id})}" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-danger">Excluir</button>
+            </form>
+        </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+
+
+
+
+<!--<html xmlns:th="https://www.thymeleaf.org"-->
+<!--      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{layoutPadrao}"-->
+<!--      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.w3.org/1999/xhtml ">-->
+<!--<head>-->
+<!--    <title>lista</title>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">-->
+
+<!--</head>-->
+<!--<body>-->
+<!-- <tr scope="row" th:each="receita : ${receitas}">-->
+<!--        <td th:text="${receita.id}"></td>-->
+<!--        <td th:text="${receita.nome}"></td>-->
+<!--        <td>-->
+
+<!--        </td>-->
+<!--    </tr>-->
+<!--<tr>-->
+<!--    <td colspan="6">Nenhum registro encontrado</td>-->
+<!--</tr>-->
+
+
+<!--</body>-->
+<!--</html>-->
